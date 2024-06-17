@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Arquivo {
+    //Perguntas
     public static List<Pergunta> carregarPerguntas(String caminhoArquivo) throws IOException{
         List<Pergunta> perguntas = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))){
@@ -32,4 +33,26 @@ public class Arquivo {
         }
     }
 
+    //Player
+    public static List<Player> carregarPlayers(String caminhoArquivo) throws IOException {
+        List<Player> players = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                players.add(Player.fromString(linha));
+            }
+        }
+        return players;
+    }
+
+    public static void salvarPlayers(String caminhoArquivo, List<Player> players) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo))) {
+            for (Player player : players) {
+                writer.write(player.toString());
+                writer.newLine();
+            }
+        }
+    }
 }
+
+
