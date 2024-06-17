@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,7 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Arquivo {
-    //Perguntas
+    //Players
+    private static final String PLAYERS = "players.txt";
+    
+    public static void criarPlayersSeNaoExistir(){
+        File arquivo = new File(PLAYERS);
+
+       try {
+           if (!arquivo.exists()) {
+               arquivo.createNewFile();
+           }
+
+       } catch (IOException exception) {
+           System.out.println(exception.getMessage());
+       
+       }
+   }
+
     public static List<Pergunta> carregarPerguntas(String caminhoArquivo) throws IOException{
         List<Pergunta> perguntas = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))){
