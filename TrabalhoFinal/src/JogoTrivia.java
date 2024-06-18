@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Scanner;
 
 public class JogoTrivia {
     private List<Pergunta> perguntas;
@@ -25,7 +24,7 @@ public class JogoTrivia {
                 System.out.println("Correto!");
                 pontuacao++;
             } else {
-                System.out.println("Errado! A resposta correta era " + pergunta.getRespostaCorreta());
+                System.out.println("Errado! Resposta incorreta");
             }
         }
         System.out.println("Jogo terminado! Sua pontuação: " + pontuacao);
