@@ -1,3 +1,4 @@
+
 public class Pergunta {
     private String enunciado;
     private String[] opcoes;
@@ -19,7 +20,9 @@ public class Pergunta {
 
     public char getRespostaCorreta() {
         return respostaCorreta;
-    }
+     }
+
+    
 
     
     

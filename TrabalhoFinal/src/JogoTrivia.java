@@ -1,13 +1,14 @@
 import java.util.List;
-import java.util.Scanner;
 
 public class JogoTrivia {
     private List<Pergunta> perguntas;
     private int pontuacao;
+    private Player jogador;
 
-    public JogoTrivia(List<Pergunta> perguntas) {
+    public JogoTrivia(List<Pergunta> perguntas, Player jogador) {
         this.perguntas = perguntas;
         this.pontuacao = 0;
+        this.jogador = jogador;
     }
 
     public void iniciar() {
@@ -19,20 +20,31 @@ public class JogoTrivia {
                 op++;
             }
             System.out.print("Sua resposta: ");
-            char resposta = Console.lerString(null).toUpperCase().charAt(0); //Garantir que a entrada do usuário seja tratada de forma consistente, independentemente de o usuário digitar em maiúsculas ou minúsculas.
+            char resposta = Console.lerString(null).toUpperCase().charAt(0);
 
             if (resposta == pergunta.getRespostaCorreta()) {
-                System.out.println("Correto!");
+                System.out.println("Correto!\n");
                 pontuacao++;
             } else {
-                System.out.println("Errado! A resposta correta era " + pergunta.getRespostaCorreta());
+                System.out.println("Errado! Resposta incorreta");
             }
         }
         System.out.println("Jogo terminado! Sua pontuação: " + pontuacao);
-        return;
+        if (pontuacao > jogador.getPontuacao()) {
+            jogador.setPontuacao(pontuacao);
+            try {
+                GerenciadorPlayers.salvarPontuacao(jogador);
+            } catch (Exception e) {
+                System.err.println("Erro ao salvar pontuação do jogador: " + e.getMessage());
+            }
+        }
     }
 
     public int getPontuacao() {
         return pontuacao;
+    }
+
+    public Player getJogador() {
+        return jogador;
     }
 }
