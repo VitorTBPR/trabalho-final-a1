@@ -1,4 +1,3 @@
-
 public class Player {
     private String nome;
     private String senha;
@@ -7,9 +6,8 @@ public class Player {
     public Player(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
+        this.pontuacao = 0;
     }
-
-    
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -34,17 +32,16 @@ public class Player {
     public void setPontuacao(int pontuacao) {
         this.pontuacao = pontuacao;
     }
-    
+
     @Override
     public String toString() {
-        return nome + "," + senha;
+        return nome + "," + senha + "," + pontuacao;
     }
-
 
     public static Player fromString(String playerDados) {
         String[] parts = playerDados.split(",");
-        return new Player(parts[0], parts[1]);
+        Player player = new Player(parts[0], parts[1]);
+        player.setPontuacao(Integer.parseInt(parts[2]));
+        return player;
     }
-
-
 }
