@@ -7,6 +7,7 @@ public class Sistema {
         while (true) {
             menu();
             int op = Console.lerInt("Informe uma opção");
+            System.out.println("\n");
             verificarOpcao(op);
         }
 
@@ -25,14 +26,20 @@ public class Sistema {
         switch (op) {
             
             case 1:
-             try {
-            List<Pergunta> perguntas = Arquivo.carregarPerguntas("perguntas.txt");
-            JogoTrivia jogo = new JogoTrivia(perguntas);
-            jogo.iniciar();
-            Arquivo.salvarPontuacao("pontuacoes.txt", jogo.getPontuacao());
-        } catch (IOException e) {
-            System.err.println("Erro ao ler ou escrever arquivos: " + e.getMessage());
-        }
+            String nome = Console.lerString("Informe seu nome: ");
+            String senha = Console.lerString("Informe sua senha: ");
+                try {
+                    Player jogador = GerenciadorPlayers.buscarPlayer(nome);
+                    if (jogador != null && jogador.getSenha().equals(senha)) {
+                        List<Pergunta> perguntas = Arquivo.carregarPerguntas("perguntas.txt");
+                        JogoTrivia jogo = new JogoTrivia(perguntas, jogador);
+                        jogo.iniciar();
+                    } else {
+                        System.out.println("Senha incorreta, tente novamente");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Erro ao buscar jogador: " + e.getMessage());
+                }
                 break;
             
             case 2:
@@ -49,8 +56,8 @@ public class Sistema {
                     player.setNome(Console.lerString("Informe seu nome: "));
                     player.setSenha(Console.lerString("Informe sua senha: "));
                     try{
-                        GerenciadorPlayers.salvarPlayer(player);
-                        GerenciadorPlayers.mostrarLista();
+                        GerenciadorPlayers.cadastrarPlayers(player);
+                        
                     } catch (IOException e) {
                         System.out.println("Erro ao salvar player: " + e.getMessage());
                     }
@@ -60,7 +67,7 @@ public class Sistema {
                             break;
 
                         case 3:
-                        GerenciadorPlayers.apagarPlayer(null);
+                        GerenciadorPlayers.apagarPlayer(Console.lerString("Nome de quem deseja apagar: "));
                             break;
 
                         case 4:
@@ -78,7 +85,7 @@ public class Sistema {
                     break;
                     
                     case 3:
-                    
+                    GerenciadorPlayers.exibirScoreboard();
                     break;
                     
                     case 0:
