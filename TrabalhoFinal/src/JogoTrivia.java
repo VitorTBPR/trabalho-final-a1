@@ -19,8 +19,7 @@ public class JogoTrivia {
                 System.out.println(op + ": " + opcao);
                 op++;
             }
-            System.out.print("Sua resposta: ");
-            char resposta = Console.lerString(null).toUpperCase().charAt(0);
+            char resposta = Console.lerString("Sua resposta: ").toUpperCase().charAt(0);
 
             if (resposta == pergunta.getRespostaCorreta()) {
                 System.out.println("Correto!\n");
