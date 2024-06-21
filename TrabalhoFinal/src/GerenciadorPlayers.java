@@ -63,6 +63,18 @@ public class GerenciadorPlayers {
         }
     }
 
+    public static void editarPlayer(String nomeAntigo, String novoNome, String novaSenha) throws IOException{
+       try {
+           Player player = buscarPlayer(nomeAntigo);
+           player.setNome(novoNome);
+           player.setSenha(novaSenha);
+           Arquivo.salvarPlayers(Arquivo.PLAYERS, listaPlayers);
+           System.out.println("Jogador editado com sucesso");
+       } catch (Exception e) {
+        System.out.println("Erro ao editar jogador: "+e.getMessage());
+       }
+    }
+
     public static void mostrarLista() {
         if (listaPlayers.isEmpty()) {
             System.out.println("Não há jogadores cadastrados.");
