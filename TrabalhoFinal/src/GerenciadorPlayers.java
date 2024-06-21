@@ -6,34 +6,39 @@ import java.util.List;
 public class GerenciadorPlayers {
     private static List<Player> listaPlayers = new ArrayList<>();
     
-    public static void cadastrarPlayers(Player player) throws IOException{
-        Arquivo.criarPlayersSeNaoExistir();
-        List<Player> players = Arquivo.carregarPlayers(Arquivo.PLAYERS);
-       for (Player p : players) {
-        if (p.getNome().equals(player.getNome())) {
-            System.out.println("Já existe um player com o nome '" + player.getNome() + "'.");
-            return; 
+    static {
+        try {
+            listaPlayers = Arquivo.carregarPlayers(Arquivo.PLAYERS);
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar players: " + e.getMessage());
         }
     }
-    players.add(player);
-    listaPlayers = players;
-    Arquivo.salvarPlayers(Arquivo.PLAYERS, players);
-} 
 
-public static void salvarPontuacao(Player player) throws IOException {
-    List<Player> players = Arquivo.carregarPlayers(Arquivo.PLAYERS);
-    for (Player p : players) {
-        if (p.getNome().equals(player.getNome())) {
-            if (player.getPontuacao() > p.getPontuacao()) {
-                p.setPontuacao(player.getPontuacao());
+    public static void cadastrarPlayers(Player player) throws IOException {
+        Arquivo.criarPlayersSeNaoExistir();
+        for (Player p : listaPlayers) {
+            if (p.getNome().equals(player.getNome())) {
+                System.out.println("Já existe um player com o nome '" + player.getNome() + "'.");
+                return; 
             }
-            Arquivo.salvarPlayers(Arquivo.PLAYERS, players);
-            return;
+        }
+        listaPlayers.add(player);
+        Arquivo.salvarPlayers(Arquivo.PLAYERS, listaPlayers);
+    }
+
+    public static void salvarPontuacao(Player player) throws IOException {
+        for (Player p : listaPlayers) {
+            if (p.getNome().equals(player.getNome())) {
+                if (player.getPontuacao() > p.getPontuacao()) {
+                    p.setPontuacao(player.getPontuacao());
+                }
+                Arquivo.salvarPlayers(Arquivo.PLAYERS, listaPlayers);
+                return;
+            }
         }
     }
-}
-    
-public static void verificarListaVazia() throws Exception {
+
+    public static void verificarListaVazia() throws Exception {
         if (listaPlayers.isEmpty()) {
             throw new Exception("\nNão há players cadastrados");
         }
@@ -56,9 +61,7 @@ public static void verificarListaVazia() throws Exception {
         } catch (Exception e) {
             System.out.println("Player não encontrado");
         }
-    } 
-
-    
+    }
 
     public static void mostrarLista() {
         if (listaPlayers.isEmpty()) {
@@ -72,10 +75,9 @@ public static void verificarListaVazia() throws Exception {
     }
 
     public static void exibirScoreboard() throws IOException {
-        List<Player> players = Arquivo.carregarPlayers(Arquivo.PLAYERS);
-        players.sort(Comparator.comparingInt(Player::getPontuacao).reversed());
+        listaPlayers.sort(Comparator.comparingInt(Player::getPontuacao).reversed());
         System.out.println("\n---- Scoreboard ----");
-        for (Player player : players) {
+        for (Player player : listaPlayers) {
             System.out.println(player.getNome() + ": " + player.getPontuacao());
         }
     }
