@@ -57,8 +57,7 @@ public class Sistema {
                         }
                         break;
                     case 2:
-                        
-                    
+                        GerenciadorPlayers.editarPlayer(Console.lerString("Quem você deseja editar? R: "), Console.lerString("Informe o novo nome: "), Console.lerString("Informe a nova senha: "));
                         break;
                     case 3:
                         GerenciadorPlayers.apagarPlayer(Console.lerString("Nome de quem deseja apagar: "));
