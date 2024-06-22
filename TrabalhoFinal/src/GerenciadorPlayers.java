@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GerenciadorPlayers {
     private static List<Player> listaPlayers = new ArrayList<>();
-    
+
     static {
         try {
             listaPlayers = Arquivo.carregarPlayers(Arquivo.PLAYERS);
@@ -58,6 +58,7 @@ public class GerenciadorPlayers {
             Player player = buscarPlayer(nome);
             listaPlayers.remove(player);
             Arquivo.salvarPlayers(Arquivo.PLAYERS, listaPlayers);
+            System.out.println("Jogador removido");
         } catch (Exception e) {
             System.out.println("Player não encontrado");
         }
@@ -93,5 +94,4 @@ public class GerenciadorPlayers {
             System.out.println(player.getNome() + ": " + player.getPontuacao());
         }
     }
- 
 }

@@ -3,6 +3,16 @@ import java.util.List;
 
 public class Sistema {
 
+    static{
+        Admin vitor = new Admin("VitorADM", "123456");
+        try {
+            GerenciadorAdmins.adicionarAdmin(vitor);
+            GerenciadorAdmins.salvarAdmins();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void executarSistema() throws IOException {
         while (true) {
             menu();
@@ -16,7 +26,8 @@ public class Sistema {
         System.out.println("\n---- Bem vindo ao jogo de trivia ----");
         System.out.println("1) Iniciar jogo");
         System.out.println("2) Players");
-        System.out.println("3) Exibir scoreboard ");
+        System.out.println("3) Exibir scoreboard");
+        System.out.println("4) Admin");
         System.out.println("0) Sair");
     }
 
@@ -76,11 +87,57 @@ public class Sistema {
             case 3:
                 GerenciadorPlayers.exibirScoreboard();
                 break;
+            
+            case 4:
+                opcoesAdmins();
+                break;
             case 0:
                 System.exit(0);
                 break;
             default:
                 break;
+        }
+ 
+    }
+
+    public static void opcoesAdmins() throws IOException {
+        System.out.println("1) Cadastrar novo admin");
+        System.out.println("2) Listar todos os admins");
+        System.out.println("3) Cadastrar uma nova pergunta ao jogo trivia");
+        System.out.println("0) Voltar");
+        int op2 = Console.lerInt("Informe uma opção: ");
+        switch (op2) {
+            case 1:
+                Admin admin = new Admin(Console.lerString("Informe o nome do admin: "), Console.lerString("Informe a senha do admin: "));
+                GerenciadorAdmins.adicionarAdmin(admin);
+                GerenciadorAdmins.salvarAdmins();
+                break;
+            case 2:
+                List<Admin> admins = GerenciadorAdmins.carregarAdmins();
+                System.out.println("Lista de administradores:");
+                for (Admin a : admins) {
+                    System.out.println("ID: " + a.getID() + ", Nome: " + a.getNome());
+                }
+                break;
+            case 3:
+                Admin.cadastrarPergunta();
+                break;
+            case 0:
+                break;
+            default:
+                System.out.println("Opção inválida, tente novamente.");
+                break;
+        }
+    }
+
+    public static void autenticarAdmin() throws IOException {
+        String nome = Console.lerString("Informe o nome do admin: ");
+        String senha = Console.lerString("Informe a senha do admin: ");
+        Admin admin = GerenciadorAdmins.buscarAdmin(nome, senha);
+        if (admin != null) {
+            opcoesAdmins();
+        } else {
+            System.out.println("Nome ou senha incorretos. Acesso negado.");
         }
     }
 }
