@@ -22,8 +22,14 @@ public class Pergunta {
         return respostaCorreta;
      }
 
-    
+     public static Pergunta novaPerguntaDoConsole() {
+        String enunciado = Console.lerString("Informe o enunciado da pergunta");
+        String[] opcoes = new String[4];
+        for (int i = 0; i < 4; i++) {
+            opcoes[i] = Console.lerString("Informe a opção " + (char)('A' + i));
+        }
+        char respostaCorreta = Console.lerString("Informe a letra da resposta correta").toUpperCase().charAt(0);
+        return new Pergunta(enunciado, opcoes, respostaCorreta);
+    }
 
-    
-    
 }

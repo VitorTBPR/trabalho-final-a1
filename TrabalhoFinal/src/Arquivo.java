@@ -4,9 +4,21 @@ import java.util.List;
 
 public class Arquivo {
     public static final String PLAYERS = "players.txt";
+    public static final String ADMINS = "admins.txt";
 
     public static void criarPlayersSeNaoExistir() {
         File arquivo = new File(PLAYERS);
+        try {
+            if (!arquivo.exists()) {
+                arquivo.createNewFile();
+            }
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    public static void criarAdminsSeNaoExistir() {
+        File arquivo = new File(ADMINS);
         try {
             if (!arquivo.exists()) {
                 arquivo.createNewFile();
