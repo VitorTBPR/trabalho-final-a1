@@ -3,14 +3,8 @@ import java.util.List;
 
 public class Sistema {
 
-    static{
-        Admin vitor = new Admin("VitorADM", "123456");
-        try {
-            GerenciadorAdmins.adicionarAdmin(vitor);
-            GerenciadorAdmins.salvarAdmins();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    static {
+        inicializarAdminPadrao();
     }
 
     public static void executarSistema() throws IOException {
@@ -89,7 +83,7 @@ public class Sistema {
                 break;
             
             case 4:
-                opcoesAdmins();
+                autenticarAdmin();
                 break;
             case 0:
                 System.exit(0);
@@ -140,4 +134,26 @@ public class Sistema {
             System.out.println("Nome ou senha incorretos. Acesso negado.");
         }
     }
+
+    private static void inicializarAdminPadrao() {
+        if (!adminPadraoExiste()) {
+            Admin adminPadrao = new Admin("admin", "admin123");
+            try {
+                GerenciadorAdmins.adicionarAdmin(adminPadrao);
+            } catch (IOException e) {
+                System.err.println("Erro ao adicionar o administrador padrão: " + e.getMessage());
+            }
+        }
+    }
+
+    private static boolean adminPadraoExiste() {
+        List<Admin> admins = GerenciadorAdmins.carregarAdmins();
+        for (Admin admin : admins) {
+            if (admin.getNome().equals("admin")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
