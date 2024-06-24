@@ -1,3 +1,5 @@
+package model;
+import view.Console;
 
 public class Pergunta {
     private String enunciado;

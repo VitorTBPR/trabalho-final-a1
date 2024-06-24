@@ -1,4 +1,9 @@
+package controller;
 import java.util.List;
+
+import model.Pergunta;
+import model.Player;
+import view.Console;
 
 public class JogoTrivia {
     private List<Pergunta> perguntas;

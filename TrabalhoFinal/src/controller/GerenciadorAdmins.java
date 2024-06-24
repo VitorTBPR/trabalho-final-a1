@@ -1,6 +1,10 @@
+package controller;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Admin;
+import view.Console;
 
 public class GerenciadorAdmins {
     private static List<Admin>listaAdmins = new ArrayList<>();

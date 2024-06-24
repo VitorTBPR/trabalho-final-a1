@@ -1,7 +1,10 @@
+package model;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+
+import view.Console;
 
 public class Admin extends Player {
     private String id;

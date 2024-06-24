@@ -1,7 +1,10 @@
+package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import model.Player;
 
 public class GerenciadorPlayers {
     private static List<Player> listaPlayers = new ArrayList<>();

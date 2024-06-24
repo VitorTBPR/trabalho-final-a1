@@ -1,6 +1,10 @@
+package controller;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Pergunta;
+import model.Player;
 
 public class Arquivo {
     public static final String PLAYERS = "players.txt";
