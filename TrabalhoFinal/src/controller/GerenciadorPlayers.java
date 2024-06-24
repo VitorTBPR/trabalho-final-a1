@@ -1,7 +1,10 @@
+package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import model.Player;
 
 public class GerenciadorPlayers {
     private static List<Player> listaPlayers = new ArrayList<>();
@@ -15,7 +18,7 @@ public class GerenciadorPlayers {
     }
 
     public static void cadastrarPlayers(Player player) throws IOException {
-        Arquivo.criarPlayersSeNaoExistir();
+        Arquivo.criarArquivoSeNaoExistir("players.txt");
         for (Player p : listaPlayers) {
             if (p.getNome().equals(player.getNome())) {
                 System.out.println("Já existe um player com o nome '" + player.getNome() + "'.");

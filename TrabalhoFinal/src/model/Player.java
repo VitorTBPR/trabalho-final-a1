@@ -1,3 +1,4 @@
+package model;
 public class Player {
     private String nome;
     private String senha;

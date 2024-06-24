@@ -1,5 +1,11 @@
+package controller;
 import java.io.IOException;
 import java.util.List;
+
+import model.Admin;
+import model.Pergunta;
+import model.Player;
+import view.Console;
 
 public class Sistema {
 

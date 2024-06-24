@@ -1,6 +1,10 @@
+package controller;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Admin;
+import view.Console;
 
 public class GerenciadorAdmins {
     private static List<Admin>listaAdmins = new ArrayList<>();
@@ -48,20 +52,18 @@ public class GerenciadorAdmins {
     }
 
     public static void apagarAdmin(String nome, String senha) throws IOException {
-        try {
-            Admin admin = buscarAdmin(nome, senha);
+        Admin admin = buscarAdmin(nome, senha);
+        if(admin!=null){
             listaAdmins.remove(admin);
             salvarAdmins();
-            System.out.println("Admin removido");
-        } catch (Exception e) {
-            System.out.println("Admin não encontrado");
+             System.out.println("Admin removido");
         }
     }
 
     public static void autenticarAdmin() throws IOException {
         String nome = Console.lerString("Informe o nome do admin: ");
         String senha = Console.lerString("Informe a senha do admin: ");
-        Admin admin = GerenciadorAdmins.buscarAdmin(nome, senha);
+        Admin admin = buscarAdmin(nome, senha);
         if (admin != null) {
             Sistema.opcoesAdmins();
         } else {
@@ -70,7 +72,6 @@ public class GerenciadorAdmins {
     }
 
     private static boolean adminPadraoExiste() {
-        List<Admin> listaAdmins = GerenciadorAdmins.carregarAdmins();
         for (Admin admin : listaAdmins) {
             if (admin.getNome().equals("admin")) {
                 return true;
@@ -84,7 +85,7 @@ public class GerenciadorAdmins {
         if (!adminPadraoExiste()) {
             Admin adminPadrao = new Admin("admin", "admin123");
             try {
-                GerenciadorAdmins.adicionarAdmin(adminPadrao);
+                adicionarAdmin(adminPadrao);
             } catch (IOException e) {
                 System.err.println("Erro ao adicionar o administrador padrão: " + e.getMessage());
             }
