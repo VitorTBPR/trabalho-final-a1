@@ -4,7 +4,7 @@ import java.util.List;
 public class Sistema {
 
     static {
-        inicializarAdminPadrao();
+        GerenciadorAdmins.inicializarAdminPadrao();
     }
 
     public static void executarSistema() throws IOException {
@@ -83,7 +83,7 @@ public class Sistema {
                 break;
             
             case 4:
-                autenticarAdmin();
+                GerenciadorAdmins.autenticarAdmin();
                 break;
             case 0:
                 System.exit(0);
@@ -98,6 +98,7 @@ public class Sistema {
         System.out.println("1) Cadastrar novo admin");
         System.out.println("2) Listar todos os admins");
         System.out.println("3) Cadastrar uma nova pergunta ao jogo trivia");
+        System.out.println("4) Apagar admin");
         System.out.println("0) Voltar");
         int op2 = Console.lerInt("Informe uma opção: ");
         switch (op2) {
@@ -116,44 +117,14 @@ public class Sistema {
             case 3:
                 Admin.cadastrarPergunta();
                 break;
+            case 4:    
+                GerenciadorAdmins.apagarAdmin(Console.lerString("Informe o nome: "), Console.lerString("Informe a senha: "));
             case 0:
                 break;
             default:
                 System.out.println("Opção inválida, tente novamente.");
                 break;
         }
-    }
-
-    public static void autenticarAdmin() throws IOException {
-        String nome = Console.lerString("Informe o nome do admin: ");
-        String senha = Console.lerString("Informe a senha do admin: ");
-        Admin admin = GerenciadorAdmins.buscarAdmin(nome, senha);
-        if (admin != null) {
-            opcoesAdmins();
-        } else {
-            System.out.println("Nome ou senha incorretos. Acesso negado.");
-        }
-    }
-
-    private static void inicializarAdminPadrao() {
-        if (!adminPadraoExiste()) {
-            Admin adminPadrao = new Admin("admin", "admin123");
-            try {
-                GerenciadorAdmins.adicionarAdmin(adminPadrao);
-            } catch (IOException e) {
-                System.err.println("Erro ao adicionar o administrador padrão: " + e.getMessage());
-            }
-        }
-    }
-
-    private static boolean adminPadraoExiste() {
-        List<Admin> admins = GerenciadorAdmins.carregarAdmins();
-        for (Admin admin : admins) {
-            if (admin.getNome().equals("admin")) {
-                return true;
-            }
-        }
-        return false;
     }
 }
 
