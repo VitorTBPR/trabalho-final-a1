@@ -1,23 +1,21 @@
-Projeto Jogo de Trivia
-Informações Gerais sobre o Projeto
-Descrição
+# Projeto Jogo de Trivia
+## Informações Gerais sobre o Projeto
+Descrição:
 Este é um jogo de trivia que permite aos jogadores responder perguntas e acumular pontos com base em suas respostas corretas. O sistema possui dois tipos de usuários: Players e Admins. Admins podem gerenciar perguntas e jogadores, enquanto os Players participam do jogo respondendo às perguntas.
 
-Objetivos
+**Objetivos:**
 Proporcionar um jogo de trivia interativo.
 Permitir a gestão de usuários e perguntas por Admins.
 Armazenar pontuações e exibir uma tabela de classificação.
 
-Funcionalidades Principais
+**Funcionalidades Principais:**
 Cadastro e autenticação de Players e Admins.
 Inserção de perguntas pelo Admin.
 Jogo de trivia com perguntas de múltipla escolha.
 Armazenamento e exibição de pontuações dos jogadores.
 Exibição de uma tabela de classificação (scoreboard).
 
-Informações sobre as Classes e suas Relações
-
-Classes do Projeto
+**Classes do Projeto:**
 1. controller.Arquivo
 Responsável pelo gerenciamento de arquivos, como salvar e carregar dados de jogadores, admins e perguntas.
 
@@ -48,21 +46,22 @@ Fornece métodos para leitura de entradas do console, como inteiros, floats e st
 10. Principal
 Onde fica a main
 
-Relações entre as Classes
-Associação: GerenciadorPlayers e GerenciadorAdmins utilizam a classe Arquivo para carregar e salvar dados de jogadores e admins.
-JogoTrivia utiliza Pergunta para compor as perguntas do jogo.
-Sistema utiliza GerenciadorPlayers e GerenciadorAdmins para gerenciar o fluxo do sistema.
+**Relações entre as Classes:**
 
-Composição: jogoTrivia possui uma lista de Pergunta e um objeto Player representando o jogador atual.
+- Associação: GerenciadorPlayers e GerenciadorAdmins utilizam a classe Arquivo para carregar e salvar dados de jogadores e admins.
+- JogoTrivia utiliza Pergunta para compor as perguntas do jogo.
+- Sistema utiliza GerenciadorPlayers e GerenciadorAdmins para gerenciar o fluxo do sistema.
 
-Agregação: GerenciadorPlayers e GerenciadorAdmins mantêm listas de objetos Player e Admin, respectivamente.
+- Composição: jogoTrivia possui uma lista de Pergunta e um objeto Player representando o jogador atual.
 
-Uso do ChatGPT: o uso do chatGPT foi utilizado para auxiliar no raciocínio de lógica para aplicar o que foi pensado, além do auxílio para aplicação de clean code no sistema.
+- Agregação: GerenciadorPlayers e GerenciadorAdmins mantêm listas de objetos Player e Admin, respectivamente.
 
-Referências e Recursos: foram utilizados como referências os seguintes itens:
-Vídeo do Youtube: "como fazer Jogo (QUIZ-Java) Código e configurações adicionais" - link: https://www.youtube.com/watch?v=OoZW71ppfnA
-As aulas salvas no repositório java-ecoville
-ChatGPT para saneamento de dúvidas pontuais e auxilio na lógica de programação.
+- Uso do ChatGPT: o uso do chatGPT foi utilizado para auxiliar no raciocínio de lógica para aplicar o que foi pensado, além do auxílio para aplicação de clean code no sistema.
+
+### Referências e Recursos: foram utilizados como referências os seguintes itens:
+- Vídeo do Youtube: "como fazer Jogo (QUIZ-Java) Código e configurações adicionais" - link: [clique aqui!](https://www.youtube.com/watch?v=OoZW71ppfnA)
+- As aulas salvas no repositório java-ecoville
+- ChatGPT para saneamento de dúvidas pontuais e auxilio na lógica de programação.
 
 
 
