@@ -6,19 +6,8 @@ public class Arquivo {
     public static final String PLAYERS = "players.txt";
     public static final String ADMINS = "admins.txt";
 
-    public static void criarPlayersSeNaoExistir() {
-        File arquivo = new File(PLAYERS);
-        try {
-            if (!arquivo.exists()) {
-                arquivo.createNewFile();
-            }
-        } catch (IOException exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
-
-    public static void criarAdminsSeNaoExistir() {
-        File arquivo = new File(ADMINS);
+    public static void criarArquivoSeNaoExistir(String caminhoArquivo) {
+        File arquivo = new File(caminhoArquivo);
         try {
             if (!arquivo.exists()) {
                 arquivo.createNewFile();
@@ -56,7 +45,7 @@ public class Arquivo {
         List<Player> players = new ArrayList<>();
         File arquivo = new File(caminhoArquivo);
         if (!arquivo.exists()) {
-            criarPlayersSeNaoExistir();
+            criarArquivoSeNaoExistir(caminhoArquivo);
             return players;
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {

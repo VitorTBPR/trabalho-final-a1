@@ -14,8 +14,8 @@ public class Admin extends Player {
     public static void cadastrarPergunta() {
         System.out.println("Cadastro de nova pergunta");
         String enunciado = (Console.lerString("Enunciado: "));
-
         String[] opcoes = new String[4];
+        
         for (int i = 0; i < 4; i++) {
             opcoes[i] = Console.lerString("Opção " + (char) ('A' + i) + ": ");
         }
@@ -49,10 +49,7 @@ public class Admin extends Player {
         }
         return sb.toString();
     }
-
-    
-
-    
+  
     @Override
     public String toString() {
         return id + "," + getNome() + "," + getSenha() + "," + getPontuacao();

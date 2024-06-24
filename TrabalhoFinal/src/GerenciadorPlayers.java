@@ -15,7 +15,7 @@ public class GerenciadorPlayers {
     }
 
     public static void cadastrarPlayers(Player player) throws IOException {
-        Arquivo.criarPlayersSeNaoExistir();
+        Arquivo.criarArquivoSeNaoExistir("players.txt");
         for (Player p : listaPlayers) {
             if (p.getNome().equals(player.getNome())) {
                 System.out.println("Já existe um player com o nome '" + player.getNome() + "'.");
